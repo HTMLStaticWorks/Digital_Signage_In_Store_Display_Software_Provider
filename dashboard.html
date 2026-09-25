@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DisplayFlow Digital Signage Client Control Dashboard SPA.">
+  <link rel="icon" href="assets/images/favicon.png">
+  <title>Dashboard | DisplayFlow Signage</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="dash-page">
+
+  <div class="dash-layout">
+    <!-- Backdrop Overlay for Mobile Sidebar Drawer -->
+    <div class="dash-overlay" id="dash-overlay"></div>
+
+    <!-- Sticky Left Sidebar (.dside / .dash-sidebar) -->
+    <aside class="dside dash-sidebar" id="dash-sidebar">
+      <div class="dside-header">
+        <a href="index.html" class="logo"><img src="assets/images/favicon.png" alt="DisplayFlow Logo" class="logo-icon">Display<b>Flow</b></a>
+      </div>
+
+      <nav class="dside-nav">
+        <a href="#overview" class="dash-nav-item active" onclick="switchDashTab('overview')">
+          <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+          <span>Overview</span>
+        </a>
+        <a href="#quick-booking" class="dash-nav-item" onclick="switchDashTab('quick-booking')">
+          <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          <span>Quick Booking</span>
+        </a>
+        <a href="#live-tracking" class="dash-nav-item" onclick="switchDashTab('live-tracking')">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span>Live Operations</span>
+          <span class="badge-count">Live</span>
+        </a>
+        <a href="#history" class="dash-nav-item" onclick="switchDashTab('history')">
+          <svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+          <span>History Log</span>
+        </a>
+        <a href="#saved-locations" class="dash-nav-item" onclick="switchDashTab('saved-locations')">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm-1 10h-2V7h2v5zm4 0h-2V7h2v5z"/></svg>
+          <span>Saved Locations</span>
+        </a>
+        <a href="#billing-section" class="dash-nav-item" onclick="switchDashTab('billing-section')">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+          <span>Billing & Invoices</span>
+        </a>
+      </nav>
+
+      <div class="dside-footer">
+        <a href="#" class="dash-nav-item" onclick="triggerLogoutModal(event)" style="color: #f87171;">
+          <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+          <span>LogOut</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="dash-main">
+      <!-- Topbar Header -->
+      <header class="dash-topbar">
+        <div class="dash-topbar-left">
+          <button class="dash-hamburger" id="dash-hamburger" aria-label="Toggle Navigation Drawer">☰</button>
+          <span style="font-weight: 700; font-size: 15px; color: var(--ink);">Display Network Operations</span>
+        </div>
+
+        <div class="dash-topbar-right">
+          <button class="toolbtn" id="rtl-toggle">RTL</button>
+          <button class="toolbtn" id="theme-toggle" aria-label="Toggle Dark/Light Mode">☾</button>
+          
+          <!-- User Chip -->
+          <div class="user-chip">
+            <div class="user-avatar">AM</div>
+            <div class="user-info">
+              <span class="user-name">Alex Morgan</span>
+              <span class="user-tier">Enterprise Tier</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Scrollable Content Viewport -->
+      <div class="dash-content">
+
+        <!-- 1. OVERVIEW PANEL -->
+        <section class="dash-panel active" id="overview">
+          <div class="panel-header">
+            <div>
+              <h1>Network Overview</h1>
+              <p class="panel-subtitle">Real-time status of connected store displays and media players.</p>
+            </div>
+            <button class="btn btn-primary" onclick="switchDashTab('quick-booking')">+ Deploy New Screen</button>
+          </div>
+
+          <!-- KPI Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-title">Total Screens</div>
+              <div class="kpi-value">128</div>
+              <div class="kpi-sub"><span class="trend-up">↑ +12%</span> vs last month</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Online Health</div>
+              <div class="kpi-value" style="color:var(--green)">98.4%</div>
+              <div class="kpi-sub"><span class="trend-up">● 126 Active</span> 2 Syncing</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Active Playlists</div>
+              <div class="kpi-value">42</div>
+              <div class="kpi-sub"><span>18 Promo Loops Running</span></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Bandwidth Used</div>
+              <div class="kpi-value">1.4 TB</div>
+              <div class="kpi-sub"><span class="trend-up">4K Edge Caching Active</span></div>
+            </div>
+          </div>
+
+          <!-- Active Status Summary Banner -->
+          <div class="status-banner">
+            <div class="status-banner-text">
+              <span class="pulse-dot"></span>
+              <span>All 128 Display Players Connected • 0 Critical System Alerts</span>
+            </div>
+            <button class="btn btn-sm btn-light" onclick="showToast('System Diagnostics Clean: All nodes operational', 'success')">Run Diagnostic</button>
+          </div>
+
+          <!-- Upcoming Items List -->
+          <div class="panel-box">
+            <h3>Upcoming Network Schedule & Rollouts</h3>
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Scheduled Item / Campaign</th>
+                    <th>Target Outlets</th>
+                    <th>Scheduled Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Fall Seasonal Promotional Video Loop</strong></td>
+                    <td>Flagship Fifth Ave & Downtown Outlets</td>
+                    <td>Today, 18:00 EST</td>
+                    <td><span class="badge-status badge-info">Staging</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>DisplayFlow OS v4.2 Edge Firmware Update</strong></td>
+                    <td>All 128 Player Nodes</td>
+                    <td>Tomorrow, 02:00 EST</td>
+                    <td><span class="badge-status badge-success">Scheduled</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Annual Enterprise Display License Renewal</strong></td>
+                    <td>Global Screen Network</td>
+                    <td>Oct 15, 2026</td>
+                    <td><span class="badge-status badge-warning">Pending Review</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. QUICK BOOKING / SCREEN DEPLOYMENT PANEL -->
+        <section class="dash-panel" id="quick-booking">
+          <div class="panel-header">
+            <div>
+              <h1>Quick Booking & Screen Deployment</h1>
+              <p class="panel-subtitle">Reserve new display hardware, request field technician setup, or dispatch content loops.</p>
+            </div>
+          </div>
+
+          <div class="dash-split-2">
+            <!-- Reservation Form -->
+            <div class="panel-box">
+              <h3>Deployment Reservation Form</h3>
+              <form id="booking-form" onsubmit="event.preventDefault(); showToast('Screen Deployment Reservation Confirmed!', 'success'); switchDashTab('live-tracking');">
+                <div class="field">
+                  <label for="booking-location-select">Select Target Location / Store Outlet</label>
+                  <select id="booking-location-select" required>
+                    <option value="Fifth Ave Flagship Store">Fifth Ave Flagship Store (New York)</option>
+                    <option value="Downtown Metro Mall">Downtown Metro Mall (Chicago)</option>
+                    <option value="Airport Terminal 3 Video Wall">Airport Terminal 3 Video Wall (LAX)</option>
+                    <option value="Westside Retail Plaza">Westside Retail Plaza (San Francisco)</option>
+                    <option value="Suburban Center Outlet">Suburban Center Outlet (Dallas)</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="screen-count-input">Number of Screen Nodes to Deploy</label>
+                  <input type="number" id="screen-count-input" min="1" max="50" value="4" required>
+                </div>
+
+                <div class="field">
+                  <label for="service-tier-select">Service & Hardware Package Tier</label>
+                  <select id="service-tier-select">
+                    <option value="1">Standard 4K Player Hardware ($45 / screen setup)</option>
+                    <option value="1.3">High-Brightness Outdoor Display Package ($58.50 / screen setup)</option>
+                    <option value="1.8">Ultra-HD Video Wall Array Package ($81 / screen setup)</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="deployment-date">Preferred Installation Date & Time</label>
+                  <input type="datetime-local" id="deployment-date" required value="2026-09-28T09:00">
+                </div>
+
+                <div class="field">
+                  <label for="booking-notes">Special On-Site Instructions</label>
+                  <textarea id="booking-notes" placeholder="Mounting instructions, HDMI pass-through, network wall outlet specs..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Confirm Reservation & Request Technician →</button>
+              </form>
+            </div>
+
+            <!-- Live Fare / Cost Estimator Card -->
+            <div>
+              <div class="panel-box" style="background: var(--blue-light); border-color: rgba(21,94,239,0.3);">
+                <span class="eyebrow">Real-Time Estimator</span>
+                <h3 style="margin-top:4px;">Live Cost Estimate</h3>
+                <div style="font-family:'Space Grotesk',sans-serif; font-size: 38px; font-weight:800; color:var(--blue);" id="estimated-fare-display">$330.00</div>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:16px;">Includes base dispatch fee ($150) + calculated screen hardware setup rate.</p>
+                <div style="border-top:1px solid var(--line); padding-top:14px; font-size:12px; color:var(--ink);">
+                  ✓ Instant activation on DisplayFlow Cloud Platform<br>
+                  ✓ Dedicated field technician dispatch included
+                </div>
+              </div>
+
+              <!-- Service Inclusions List -->
+              <div class="panel-box">
+                <h3>Service Inclusions Checklist</h3>
+                <ul class="checklist">
+                  <li>On-Site Commercial Display Mounting & Wiring</li>
+                  <li>DisplayFlow OS Pre-Configured Player Hardware</li>
+                  <li>4K UHD Playback & Failover Verification</li>
+                  <li>24/7 Remote Telemetry Diagnostics & Monitoring</li>
+                  <li>3-Year Commercial Hardware Warranty Replacement</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. LIVE OPERATIONS TRACKING PANEL -->
+        <section class="dash-panel" id="live-tracking">
+          <div class="panel-header">
+            <div>
+              <h1>Live Operations & Telematics Tracking</h1>
+              <p class="panel-subtitle">Real-time status of active field technician dispatches and display playback telemetry.</p>
+            </div>
+            <span class="badge-status badge-success">● Telemetry Stream Active</span>
+          </div>
+
+          <!-- 5-Step Progress Timeline -->
+          <div class="panel-box">
+            <h3>Deployment & Playback Lifecycle Timeline</h3>
+            <div class="timeline">
+              <div class="timeline-step completed">
+                <div class="timeline-icon">✓</div>
+                <div class="timeline-label">Content Scheduled</div>
+                <div class="timeline-time">10:00 AM</div>
+              </div>
+              <div class="timeline-step completed">
+                <div class="timeline-icon">✓</div>
+                <div class="timeline-label">Edge Sync Dispatched</div>
+                <div class="timeline-time">10:15 AM</div>
+              </div>
+              <div class="timeline-step active">
+                <div class="timeline-icon">3</div>
+                <div class="timeline-label">Technician On-Site</div>
+                <div class="timeline-time">In Progress</div>
+              </div>
+              <div class="timeline-step">
+                <div class="timeline-icon">4</div>
+                <div class="timeline-label">Stream Handshake</div>
+                <div class="timeline-time">Pending</div>
+              </div>
+              <div class="timeline-step">
+                <div class="timeline-icon">5</div>
+                <div class="timeline-label">Live Playback Active</div>
+                <div class="timeline-time">Pending</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-split-2">
+            <!-- Simulated Route Map Card -->
+            <div class="panel-box">
+              <h3>Display Network & Dispatch Map</h3>
+              <div style="width:100%; height:260px; background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); position:relative; overflow:hidden; display:grid; place-items:center;">
+                <!-- Simulated SVG Map Graphic -->
+                <svg viewBox="0 0 500 250" style="width:100%; height:100%; opacity:0.75;">
+                  <path d="M20,100 Q100,20 200,80 T400,120 T480,200" fill="none" stroke="var(--blue)" stroke-width="2" stroke-dasharray="4,4"/>
+                  <!-- Pins -->
+                  <g transform="translate(100, 50)">
+                    <circle cx="0" cy="0" r="10" fill="rgba(18,160,92,0.2)"/>
+                    <circle cx="0" cy="0" r="5" fill="var(--green)"/>
+                    <text x="12" y="4" font-size="10" fill="var(--ink)" font-weight="bold">Fifth Ave Outlet (Online)</text>
+                  </g>
+                  <g transform="translate(250, 100)">
+                    <circle cx="0" cy="0" r="12" fill="rgba(21,94,239,0.3)"/>
+                    <circle cx="0" cy="0" r="6" fill="var(--blue)"/>
+                    <text x="14" y="4" font-size="10" fill="var(--ink)" font-weight="bold">Metro Mall (Tech On-Site)</text>
+                  </g>
+                  <g transform="translate(410, 160)">
+                    <circle cx="0" cy="0" r="10" fill="rgba(18,160,92,0.2)"/>
+                    <circle cx="0" cy="0" r="5" fill="var(--green)"/>
+                    <text x="12" y="4" font-size="10" fill="var(--ink)" font-weight="bold">Airport T3 (Online)</text>
+                  </g>
+                </svg>
+                <div style="position:absolute; bottom:12px; left:12px; background:var(--card); padding:6px 12px; border-radius:12px; font-size:11px; font-weight:700; border:1px solid var(--line); color:var(--ink);">
+                  📍 Active Dispatch Van: Unit #402 (ETA 12 mins)
+                </div>
+              </div>
+            </div>
+
+            <!-- Driver / Technician Details & Telematics Grid -->
+            <div>
+              <div class="panel-box">
+                <h3>Lead Field Engineer</h3>
+                <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+                  <div class="user-avatar" style="width:48px; height:48px; font-size:18px;">MV</div>
+                  <div>
+                    <strong style="font-size:16px; display:block;">Marcus Vance</strong>
+                    <span style="font-size:12px; color:var(--muted);">Senior Display Network Architect</span>
+                    <div style="font-size:12px; color:var(--amber); margin-top:2px;">★ 4.98 Customer Rating (142 installs)</div>
+                  </div>
+                </div>
+                <div style="font-size:13px; color:var(--ink);">
+                  <strong>Dispatch Vehicle:</strong> Mobile Tech Unit #402<br>
+                  <strong>Direct Contact:</strong> +1 (555) 019-2834
+                </div>
+              </div>
+
+              <div class="panel-box">
+                <h3>Live Display Telematics Grid</h3>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <div style="background:var(--paper); padding:12px; border-radius:var(--radius); border:1px solid var(--line);">
+                    <small style="color:var(--muted); font-size:11px;">Player CPU Speed</small>
+                    <strong style="display:block; font-size:18px;">2.4 GHz</strong>
+                  </div>
+                  <div style="background:var(--paper); padding:12px; border-radius:var(--radius); border:1px solid var(--line);">
+                    <small style="color:var(--muted); font-size:11px;">Screen Temp</small>
+                    <strong style="display:block; font-size:18px; color:var(--green)">38°C (Cool)</strong>
+                  </div>
+                  <div style="background:var(--paper); padding:12px; border-radius:var(--radius); border:1px solid var(--line);">
+                    <small style="color:var(--muted); font-size:11px;">Signal Strength</small>
+                    <strong style="display:block; font-size:18px;">-45 dBm (Strong)</strong>
+                  </div>
+                  <div style="background:var(--paper); padding:12px; border-radius:var(--radius); border:1px solid var(--line);">
+                    <small style="color:var(--muted); font-size:11px;">Frame Rate</small>
+                    <strong style="display:block; font-size:18px;">60.0 FPS</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. HISTORY LOG PANEL -->
+        <section class="dash-panel" id="history">
+          <div class="panel-header">
+            <div>
+              <h1>History Log & Dispatch Records</h1>
+              <p class="panel-subtitle">Complete audit trail of network deployment events, maintenance, and invoice receipts.</p>
+            </div>
+            <button class="btn btn-sm btn-light" onclick="showToast('Exporting complete audit log to CSV...', 'info')">Export Audit Log CSV</button>
+          </div>
+
+          <div class="panel-box">
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Event / Campaign ID</th>
+                    <th>Target Outlet</th>
+                    <th>Timestamp</th>
+                    <th>Status Badge</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#EVT-8921: 4K Display Hardware Upgrade</strong></td>
+                    <td>Fifth Ave Flagship Store</td>
+                    <td>Sep 24, 2026 - 14:32</td>
+                    <td><span class="badge-status badge-success">Completed</span></td>
+                    <td><button class="btn btn-sm btn-light" onclick="showToast('Downloading Invoice PDF #DF-8921.pdf...', 'success')">📄 Download Invoice PDF</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#EVT-8840: Playlist Content Edge Sync</strong></td>
+                    <td>Downtown Metro Mall</td>
+                    <td>Sep 22, 2026 - 09:15</td>
+                    <td><span class="badge-status badge-success">Completed</span></td>
+                    <td><button class="btn btn-sm btn-light" onclick="showToast('Downloading Invoice PDF #DF-8840.pdf...', 'success')">📄 Download Invoice PDF</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#EVT-8792: Emergency Router Reset</strong></td>
+                    <td>Airport Terminal 3 Video Wall</td>
+                    <td>Sep 18, 2026 - 18:44</td>
+                    <td><span class="badge-status badge-info">Resolved</span></td>
+                    <td><button class="btn btn-sm btn-light" onclick="showToast('Downloading Incident PDF #DF-8792.pdf...', 'success')">📄 Download Report PDF</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#EVT-8610: Seasonal Menu Board Update</strong></td>
+                    <td>Westside Retail Plaza</td>
+                    <td>Sep 10, 2026 - 11:00</td>
+                    <td><span class="badge-status badge-success">Completed</span></td>
+                    <td><button class="btn btn-sm btn-light" onclick="showToast('Downloading Invoice PDF #DF-8610.pdf...', 'success')">📄 Download Invoice PDF</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. SAVED LOCATIONS PANEL -->
+        <section class="dash-panel" id="saved-locations">
+          <div class="panel-header">
+            <div>
+              <h1>Saved Display Outlets & Locations</h1>
+              <p class="panel-subtitle">Quickly trigger screen deployments or playlist dispatches to your registered store locations.</p>
+            </div>
+          </div>
+
+          <div class="location-grid">
+            <div class="location-card">
+              <div>
+                <span class="badge-status badge-success" style="margin-bottom:8px;">● 48 Screens Active</span>
+                <h4>Fifth Ave Flagship Store</h4>
+                <p>745 5th Ave, New York, NY 10022<br>Default Loop: <em>Fall Promo 4K</em></p>
+              </div>
+              <button class="btn btn-sm btn-primary book-location-btn" data-location="Fifth Ave Flagship Store">Book Here →</button>
+            </div>
+
+            <div class="location-card">
+              <div>
+                <span class="badge-status badge-success" style="margin-bottom:8px;">● 32 Screens Active</span>
+                <h4>Downtown Metro Mall</h4>
+                <p>100 N Michigan Ave, Chicago, IL 60601<br>Default Loop: <em>Weekend Sale Specials</em></p>
+              </div>
+              <button class="btn btn-sm btn-primary book-location-btn" data-location="Downtown Metro Mall">Book Here →</button>
+            </div>
+
+            <div class="location-card">
+              <div>
+                <span class="badge-status badge-warning" style="margin-bottom:8px;">● 16 Screens Active (1 Syncing)</span>
+                <h4>Airport Terminal 3 Video Wall</h4>
+                <p>1 World Way, Los Angeles, CA 90045<br>Default Loop: <em>Flight Welcome Loop</em></p>
+              </div>
+              <button class="btn btn-sm btn-primary book-location-btn" data-location="Airport Terminal 3 Video Wall">Book Here →</button>
+            </div>
+
+            <div class="location-card">
+              <div>
+                <span class="badge-status badge-success" style="margin-bottom:8px;">● 24 Screens Active</span>
+                <h4>Westside Retail Plaza</h4>
+                <p>865 Market St, San Francisco, CA 94103<br>Default Loop: <em>In-Store Dining Menus</em></p>
+              </div>
+              <button class="btn btn-sm btn-primary book-location-btn" data-location="Westside Retail Plaza">Book Here →</button>
+            </div>
+
+            <div class="location-card">
+              <div>
+                <span class="badge-status badge-success" style="margin-bottom:8px;">● 8 Screens Active</span>
+                <h4>Suburban Center Outlet</h4>
+                <p>13350 Dallas Pkwy, Dallas, TX 75240<br>Default Loop: <em>Brand Announcement Loop</em></p>
+              </div>
+              <button class="btn btn-sm btn-primary book-location-btn" data-location="Suburban Center Outlet">Book Here →</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. BILLING & INVOICES PANEL -->
+        <section class="dash-panel" id="billing-section">
+          <div class="panel-header">
+            <div>
+              <h1>Billing & Accounting Integrations</h1>
+              <p class="panel-subtitle">Manage statement balance, auto-pay preferences, integrated ERP connections, and monthly invoices.</p>
+            </div>
+          </div>
+
+          <div class="dash-split-2">
+            <!-- Statement Balance Card -->
+            <div class="panel-box">
+              <h3>Statement Account Balance</h3>
+              <div style="font-family:'Space Grotesk',sans-serif; font-size: 38px; font-weight:800; color:var(--ink); margin: 8px 0;">$1,450.00</div>
+              <p style="color:var(--muted); font-size:13px; margin:0 0 16px;">Next billing cycle date: <strong>October 01, 2026</strong> (Auto-pay ENABLED via Amex ending in 4092)</p>
+              <div style="display:flex; gap:10px;">
+                <button class="btn btn-primary btn-sm" onclick="showToast('Payment card settings updated!', 'success')">Update Payment Method</button>
+                <button class="btn btn-light btn-sm" onclick="showToast('Statement breakdown sent to your email.', 'info')">View Statement Breakdown</button>
+              </div>
+            </div>
+
+            <!-- Accounting Integration Badges -->
+            <div class="panel-box">
+              <h3>Accounting & ERP Integrations</h3>
+              <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Automatically sync display hardware invoices and monthly SaaS charges with your ERP software.</p>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                <div style="background:var(--paper); padding:10px; border-radius:var(--radius); border:1px solid var(--line); display:flex; align-items:center; justify-content:space-between;">
+                  <strong style="font-size:13px;">SAP Concur</strong>
+                  <span class="badge-status badge-success">Connected</span>
+                </div>
+                <div style="background:var(--paper); padding:10px; border-radius:var(--radius); border:1px solid var(--line); display:flex; align-items:center; justify-content:space-between;">
+                  <strong style="font-size:13px;">QuickBooks</strong>
+                  <span class="badge-status badge-success">Connected</span>
+                </div>
+                <div style="background:var(--paper); padding:10px; border-radius:var(--radius); border:1px solid var(--line); display:flex; align-items:center; justify-content:space-between;">
+                  <strong style="font-size:13px;">Xero Accounting</strong>
+                  <span class="badge-status badge-success">Connected</span>
+                </div>
+                <div style="background:var(--paper); padding:10px; border-radius:var(--radius); border:1px solid var(--line); display:flex; align-items:center; justify-content:space-between;">
+                  <strong style="font-size:13px;">NetSuite ERP</strong>
+                  <span class="badge-status badge-success">Connected</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Monthly Invoices Download Table -->
+          <div class="panel-box">
+            <h3>Monthly Statement Invoices</h3>
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Invoice Number</th>
+                    <th>Billing Period</th>
+                    <th>Amount Paid</th>
+                    <th>Payment Status</th>
+                    <th>Download Invoice</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#DF-INV-2026-09</strong></td>
+                    <td>September 2026 (Enterprise 128 Screens)</td>
+                    <td>$1,450.00</td>
+                    <td><span class="badge-status badge-success">Paid</span></td>
+                    <td><button class="btn btn-sm btn-light" onclick="showToast('Downloading PDF Invoice #DF-INV-2026-09...', 'success')">📥 Download PDF</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#DF-INV-2026-08</strong></td>
+                    <td>August 2026 (Enterprise 128 Screens)</td>
+                    <td>$1,450.00</td>
+                    <td><span class="badge-status badge-success">Paid</span></td>
+                    <td><button class="btn btn-sm btn-light" onclick="showToast('Downloading PDF Invoice #DF-INV-2026-08...', 'success')">📥 Download PDF</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#DF-INV-2026-07</strong></td>
+                    <td>July 2026 (Business 116 Screens)</td>
+                    <td>$1,280.00</td>
+                    <td><span class="badge-status badge-success">Paid</span></td>
+                    <td><button class="btn btn-sm btn-light" onclick="showToast('Downloading PDF Invoice #DF-INV-2026-07...', 'success')">📥 Download PDF</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Welcome Modal on Load -->
+  <div class="dash-modal-backdrop" id="welcome-modal">
+    <div class="dash-modal">
+      <div class="dash-modal-header">
+        <h2>Welcome to DisplayFlow v4.2</h2>
+        <button class="toast-close" onclick="closeWelcomeModal()">&times;</button>
+      </div>
+      <div class="dash-modal-body">
+        <p>Your digital display network is currently running at <strong>98.4% health</strong> across 128 connected screens in 12 store locations.</p>
+        <p>You can manage active playlists, dispatch field technicians for screen installations, and track real-time display telemetry right from this dashboard.</p>
+      </div>
+      <div class="dash-modal-actions">
+        <button class="btn btn-primary" onclick="closeWelcomeModal()">Explore Dashboard →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Out Confirmation Modal -->
+  <div class="dash-modal-backdrop" id="logout-modal">
+    <div class="dash-modal">
+      <div class="dash-modal-header">
+        <h2>Sign Out Confirmation</h2>
+        <button class="toast-close" onclick="closeLogoutModal()">&times;</button>
+      </div>
+      <div class="dash-modal-body">
+        <p>Are you sure you want to sign out of your DisplayFlow Enterprise Client Portal?</p>
+      </div>
+      <div class="dash-modal-actions">
+        <button class="btn btn-light" onclick="closeLogoutModal()">Cancel</button>
+        <button class="btn btn-primary" style="background:var(--red);" onclick="confirmSignOut()">Confirm Sign Out</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>
