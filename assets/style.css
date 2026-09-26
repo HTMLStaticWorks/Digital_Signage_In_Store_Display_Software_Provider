@@ -1099,6 +1099,52 @@ body.dash-page {
   margin: 0 0 16px;
 }
 
+/* ERP Integrations Grid */
+.erp-subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.erp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.erp-item {
+  background: var(--paper);
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+  transition: var(--transition);
+}
+
+.erp-item:hover {
+  border-color: var(--blue);
+  background: var(--card);
+}
+
+.erp-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.erp-item .badge-status {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
 /* Dashboard & Form Fields */
 .field {
   margin-bottom: 18px;
@@ -2671,9 +2717,10 @@ body.auth-page .back-to-top {
   .kpi-grid,
   .location-grid,
   .footer-grid,
-  .footergrid {
+  .footergrid,
+  .erp-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
   }
 
   /* Reset grid column span and width for 3rd card on 1-column mobile view */
