@@ -19,7 +19,12 @@
     const isRtl = body.classList.contains('rtl');
 
     themeBtns.forEach(btn => {
-      btn.textContent = isDark ? '☀' : '☾';
+      const isMobileBtn = btn.classList.contains('theme-toggle-btn');
+      if (isMobileBtn) {
+        btn.textContent = isDark ? '☀ Light' : '☾ Dark';
+      } else {
+        btn.textContent = isDark ? '☀' : '☾';
+      }
       btn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
     });
 
@@ -45,19 +50,19 @@
     updateToggleButtons();
   };
 
-  // Bind Header Theme & RTL Buttons
+  // Bind Header & Mobile Theme & RTL Buttons
   document.addEventListener('DOMContentLoaded', function () {
     updateToggleButtons();
 
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    if (themeToggleBtn) {
-      themeToggleBtn.addEventListener('click', window.toggleTheme);
-    }
+    const themeToggleBtns = document.querySelectorAll('#theme-toggle, .theme-toggle-btn');
+    themeToggleBtns.forEach(btn => {
+      btn.addEventListener('click', window.toggleTheme);
+    });
 
-    const rtlToggleBtn = document.getElementById('rtl-toggle');
-    if (rtlToggleBtn) {
-      rtlToggleBtn.addEventListener('click', window.toggleRTL);
-    }
+    const rtlToggleBtns = document.querySelectorAll('#rtl-toggle, .rtl-toggle-btn');
+    rtlToggleBtns.forEach(btn => {
+      btn.addEventListener('click', window.toggleRTL);
+    });
 
     // Populate Dynamic Copyright Year
     const yearSpans = document.querySelectorAll('[data-year]');
@@ -68,7 +73,7 @@
 
     // Back to Top Button Logic
     let backBtn = document.getElementById('back-to-top');
-    if (!backBtn && !document.body.classList.contains('dash-page')) {
+    if (!backBtn && !document.body.classList.contains('dash-page') && !document.body.classList.contains('auth-page')) {
       backBtn = document.createElement('button');
       backBtn.id = 'back-to-top';
       backBtn.className = 'back-to-top';
@@ -94,8 +99,15 @@
     const menuBtn = document.getElementById('mobile-menu');
     const menuPanel = document.getElementById('mobile-panel');
     if (menuBtn && menuPanel) {
-      menuBtn.addEventListener('click', function () {
+      menuBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
         menuPanel.classList.toggle('open');
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!menuPanel.contains(e.target) && !menuBtn.contains(e.target)) {
+          menuPanel.classList.remove('open');
+        }
       });
     }
 
@@ -190,9 +202,9 @@
     if (loginForm) {
       loginForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        window.showToast('Login successful! Redirecting to Dashboard...', 'success');
+        window.showToast('Login successful! Redirecting to Home page...', 'success');
         setTimeout(() => {
-          window.location.href = 'dashboard.html';
+          window.location.href = 'index.html';
         }, 800);
       });
     }
@@ -207,9 +219,9 @@
           window.showToast('Passwords do not match. Please verify.', 'error');
           return;
         }
-        window.showToast('Account created successfully! Redirecting to Dashboard...', 'success');
+        window.showToast('Account created successfully! Redirecting to Home page...', 'success');
         setTimeout(() => {
-          window.location.href = 'dashboard.html';
+          window.location.href = 'index.html';
         }, 800);
       });
     }
@@ -350,7 +362,7 @@
       window.closeLogoutModal();
       window.showToast('Signing out of DisplayFlow...', 'info');
       setTimeout(() => {
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
       }, 600);
     };
   });
