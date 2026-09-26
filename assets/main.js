@@ -66,6 +66,30 @@
       span.textContent = currentYear;
     });
 
+    // Back to Top Button Logic
+    let backBtn = document.getElementById('back-to-top');
+    if (!backBtn && !document.body.classList.contains('dash-page')) {
+      backBtn = document.createElement('button');
+      backBtn.id = 'back-to-top';
+      backBtn.className = 'back-to-top';
+      backBtn.setAttribute('aria-label', 'Back to top');
+      backBtn.title = 'Back to top';
+      backBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>`;
+      document.body.appendChild(backBtn);
+
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 300) {
+          backBtn.classList.add('visible');
+        } else {
+          backBtn.classList.remove('visible');
+        }
+      });
+
+      backBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
     // Mobile Navigation Menu Toggle for Site
     const menuBtn = document.getElementById('mobile-menu');
     const menuPanel = document.getElementById('mobile-panel');
