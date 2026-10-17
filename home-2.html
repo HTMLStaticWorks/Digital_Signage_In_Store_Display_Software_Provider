@@ -24,7 +24,7 @@
           href="industries.html">Industries</a><a class="" href="pricing.html">Pricing</a><a class=""
           href="contact.html">Contact</a></div>
       <div class="navtools"><button class="toolbtn" id="rtl-toggle" aria-label="Toggle RTL">RTL</button><button
-          class="toolbtn" id="theme-toggle" aria-label="Toggle theme">☾</button><a class="btn btn-light"
+          class="toolbtn" id="theme-toggle" aria-label="Toggle theme">☾</button><a class="btn btn-primary"
           href="login.html">Log-in</a><a class="btn btn-primary" href="dashboard.html">Dashboard</a></div>
       <div class="mobile" id="mobile-menu">☰</div>
     </div>
@@ -43,25 +43,141 @@
         <button class="toolbtn theme-toggle-btn" aria-label="Toggle theme">☾ Theme</button>
       </div>
       <div class="mobile-actions-row">
-        <a class="btn btn-light" href="login.html">Log-in</a>
+        <a class="btn btn-primary" href="login.html">Log-in</a>
         <a class="btn btn-primary" href="dashboard.html">Dashboard</a>
       </div>
     </div>
   </nav>
   <main>
-    <section class="hero">
-      <div class="container split">
-        <div>
-          <div class="eyebrow">Home 2 • Visual Network Control</div>
-          <h1>Turn every display into a connected revenue channel.</h1>
-          <p>DisplayFlow gives marketing, operations and IT leaders a unified cloud solution to manage high-definition
-            content, schedule multi-region campaigns and audit display health in real time.</p>
-          <div class="actions"><a class="btn btn-primary" href="dashboard.html">Open Live Dashboard →</a><a
-              class="btn btn-light" href="pricing.html">View Pricing Plans</a></div>
-        </div><img
-          src="https://images.pexels.com/photos/10508110/pexels-photo-10508110.jpeg?auto=compress&cs=tinysrgb&w=1800"
-          alt="DisplayFlow retail signage display"
-          style="width:100%; border-radius:var(--radius); border:1px solid var(--line); box-shadow:var(--shadow-lg);">
+    <section class="hero hero-v2">
+      <div class="hero-v2-bg" aria-hidden="true">
+        <img src="assets/images/hero_v2_bg.jpg" alt="" class="hero-v2-bg-img" loading="eager">
+        <div class="hero-v2-bg-gradient"></div>
+      </div>
+      <div class="container hero-v2-container">
+        <!-- Top Hero Intro Block (Scoped Section for Background Image) -->
+        <div class="hero-v2-intro">
+          <!-- Eyebrow / Feature Pill -->
+          <div class="hero-v2-badge">
+            <span class="badge-pulse-dot"></span>
+            <span>Enterprise Control Hub &bull; Visual Network Control</span>
+          </div>
+
+          <!-- Headline & Subheading -->
+          <h1 class="hero-v2-title">
+            Turn Every Display Into a Connected Revenue Channel
+          </h1>
+          <p class="hero-v2-lead">
+            DisplayFlow empowers marketing, operations, and IT leaders with unified cloud orchestration—distributing 4K media, synchronizing multi-screen campaigns, and auditing hardware health in real time.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="actions hero-v2-actions">
+            <a class="btn btn-primary" href="dashboard.html">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Open Live Dashboard →
+            </a>
+            <a class="btn btn-light" href="contact.html">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Book an Enterprise Demo
+            </a>
+            <a class="btn btn-light" href="pricing.html">View Pricing Plans</a>
+          </div>
+        </div>
+
+        <!-- Quick Stats Strip -->
+        <div class="hero-v2-metrics">
+          <div class="hero-v2-metric">
+            <strong>14,800+</strong>
+            <span>Active Screens</span>
+          </div>
+          <div class="hero-v2-metric">
+            <strong>99.98%</strong>
+            <span>Fleet Availability</span>
+          </div>
+          <div class="hero-v2-metric">
+            <strong>&lt; 1.2s</strong>
+            <span>Sync Latency</span>
+          </div>
+          <div class="hero-v2-metric">
+            <strong>4K UHD</strong>
+            <span>60fps Playback</span>
+          </div>
+        </div>
+
+        <!-- Command Center Stage Preview -->
+        <div class="hero-v2-console">
+          <div class="console-header">
+            <div class="console-dots">
+              <span class="console-dot red"></span>
+              <span class="console-dot yellow"></span>
+              <span class="console-dot green"></span>
+            </div>
+            <div class="console-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <span>DisplayFlow Cloud Console &bull; fleet.displayflow.net</span>
+            </div>
+            <div class="console-status">
+              <span class="console-status-dot"></span>
+              <span>48 Clusters Synchronized</span>
+            </div>
+          </div>
+
+          <div class="console-viewport">
+            <img class="console-screen-img" src="assets/images/corporate_wall.jpg" alt="DisplayFlow Enterprise Video Wall in Flagship Lobby">
+
+            <!-- Floating Overlay Card 1 (Top Left) -->
+            <div class="console-hud-badge top-left">
+              <div class="hud-header">
+                <span class="hud-title">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  HQ Video Wall #01
+                </span>
+                <span class="hud-status-chip">4K HDR</span>
+              </div>
+              <div class="hud-body-text">Executive Operations Wall</div>
+              <div class="hud-sub-text">
+                <span>FPS: 60.0</span>
+                <span>Uptime: 99.99%</span>
+                <span>Latency: 18ms</span>
+              </div>
+            </div>
+
+            <!-- Floating Overlay Card 2 (Bottom Right) -->
+            <div class="console-hud-badge bottom-right">
+              <div class="hud-header">
+                <span class="hud-title">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  Global Campaign Push
+                </span>
+                <span class="hud-status-chip">Live</span>
+              </div>
+              <div class="hud-body-text">Q3 Omnichannel Broadcast</div>
+              <div class="hud-progress-bar">
+                <div class="hud-progress-fill"></div>
+              </div>
+              <div class="hud-sub-text" style="margin-top:8px;">
+                <span>142 Stores Synced</span>
+                <span>0 Packet Loss</span>
+              </div>
+            </div>
+
+            <!-- Floating Overlay Card 3 (Bottom Left) -->
+            <div class="console-hud-badge bottom-left">
+              <div class="hud-header">
+                <span class="hud-title">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Next Schedule
+                </span>
+              </div>
+              <div class="hud-body-text">Lunch Special Menu Switch</div>
+              <div class="hud-sub-text">
+                <span>Auto-triggers in 14m</span>
+                <span>Tag: #Daypart</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <section class="section white">
@@ -326,7 +442,7 @@
             <a href="#" class="social-icon" aria-label="WhatsApp" title="WhatsApp">
               <svg viewBox="0 0 24 24">
                 <path
-                  d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.5 1.019 3.517l-.67 2.448 2.512-.659c.983.543 2.115.854 3.32.854 3.18 0 5.767-2.586 5.767-5.766 0-3.18-2.587-5.76-5.767-5.76zm3.385 8.163c-.144.405-.837.774-1.17.822-.303.044-.7.069-2.073-.487-1.748-.71-2.87-2.482-2.957-2.597-.087-.116-.708-.942-.708-1.797 0-.854.448-1.275.607-1.448.159-.174.347-.217.463-.217.116 0 .231.002.332.007.107.005.25-.041.391.298.144.347.491 1.2.534 1.288.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.101-.178.21-.077.384.101.174.45 0.743.966 1.203.664.592 1.224.776 1.398.863.174.087.275.072.376-.043.101-.116.433-.506.549-.679.116-.174.231-.144.39-.087.159.058 1.011.477 1.184.564.174.087.289.13.332.202.044.073.044.419-.1.824z" />
+                  d="M12.001 2c5.523 0 10 4.477 10 10s-4.477 10-10 10a9.95 9.95 0 0 1-5.03-1.355L2.005 22l1.352-4.968A9.95 9.95 0 0 1 2.001 12c0-5.523 4.477-10 10-10zM8.593 7.3l-.2.008a1 1 0 0 0-.372.1a1.3 1.3 0 0 0-.294.228c-.12.113-.188.211-.261.306A2.73 2.73 0 0 0 6.9 9.62c.002.49.13.967.33 1.413c.409.902 1.082 1.857 1.97 2.742c.214.213.424.427.65.626a9.45 9.45 0 0 0 3.84 2.046l.568.087c.185.01.37-.004.556-.013a2 2 0 0 0 .833-.231a5 5 0 0 0 .383-.22q.001.002.125-.09c.135-.1.218-.171.33-.288q.126-.13.21-.302c.078-.163.156-.474.188-.733c.024-.198.017-.306.014-.373c-.004-.107-.093-.218-.19-.265l-.582-.261s-.87-.379-1.402-.621a.5.5 0 0 0-.176-.041a.48.48 0 0 0-.378.127c-.005-.002-.072.055-.795.931a.35.35 0 0 1-.368.13a1.4 1.4 0 0 1-.191-.066c-.124-.052-.167-.072-.252-.108a6 6 0 0 1-1.575-1.003c-.126-.11-.243-.23-.363-.346a6.3 6.3 0 0 1-1.02-1.268l-.059-.095a1 1 0 0 1-.102-.205c-.038-.147.061-.265.061-.265s.243-.266.356-.41c.11-.14.203-.276.263-.373c.118-.19.155-.385.093-.536q-.42-1.026-.868-2.041c-.059-.134-.234-.23-.393-.249q-.081-.01-.162-.016a3 3 0 0 0-.403.004z" />
               </svg>
             </a>
           </div>
