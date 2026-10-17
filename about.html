@@ -50,7 +50,11 @@
   </nav>
   <main>
     <section class="subhero">
-      <div class="container">
+      <div class="subhero-bg" aria-hidden="true">
+        <img src="assets/images/hero_about_bg.jpg" alt="" class="subhero-bg-img" loading="eager">
+        <div class="subhero-bg-gradient"></div>
+      </div>
+      <div class="container subhero-container">
         <div class="eyebrow">About DisplayFlow</div>
         <h1>Digital signage without the operational mess.</h1>
         <p>DisplayFlow is an enterprise digital signage platform engineered for multi-location retail, restaurant,
@@ -81,72 +85,7 @@
       </div>
     </section>
 
-    <!-- Section 2: Three Teams One Workflow -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">Why the model works</div>
-          <h2>One platform, three teams, one shared workflow.</h2>
-          <p>Align marketing strategy, store operations, and IT security inside a single real-time platform.</p>
-        </div>
-        <div class="cards">
-          <div class="card">
-            <div class="icon"
-              style="font-size:20px; width:44px; height:44px; margin-bottom:14px; display:inline-flex; align-items:center; justify-content:center; background:rgba(37,99,235,0.1); border-radius:10px;">
-              📣</div>
-            <h3>Marketing Team</h3>
-            <p>Own campaign content and promotional messaging with reusable master templates, dynamic weather triggers,
-              and automated scheduled publishing.</p>
-            <ul class="checklist" style="margin-top:10px; font-size:12.5px;">
-              <li>Reusable layout templates</li>
-              <li>Daypart promotion rules</li>
-            </ul>
-          </div>
-          <div class="card">
-            <div class="icon"
-              style="font-size:20px; width:44px; height:44px; margin-bottom:14px; display:inline-flex; align-items:center; justify-content:center; background:rgba(16,185,129,0.1); border-radius:10px;">
-              ⚙️</div>
-            <h3>Operations Team</h3>
-            <p>Organize store locations and regional screen groups so local store managers can edit approved zones while
-              central brand guardrails stay locked.</p>
-            <ul class="checklist" style="margin-top:10px; font-size:12.5px;">
-              <li>Regional store grouping</li>
-              <li>Local price & note edits</li>
-            </ul>
-          </div>
-          <div class="card">
-            <div class="icon"
-              style="font-size:20px; width:44px; height:44px; margin-bottom:14px; display:inline-flex; align-items:center; justify-content:center; background:rgba(245,158,11,0.1); border-radius:10px;">
-              🛡️</div>
-            <h3>IT & Engineering</h3>
-            <p>Monitor uptime 24/7, remotely reboot offline player nodes, enforce SSO authentication, and maintain a
-              complete proof-of-play audit log.</p>
-            <ul class="checklist" style="margin-top:10px; font-size:12.5px;">
-              <li>99.98% Uptime SLA</li>
-              <li>Remote diagnostic reboot</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 3: Product Principles -->
-    <section class="section white">
-      <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">Product principles</div>
-          <h2>Built around clarity, control and consistency.</h2>
-        </div>
-        <div class="stats">
-          <div class="stat"><strong>01</strong><span>Clarity in every workflow</span></div>
-          <div class="stat"><strong>02</strong><span>Control at every location</span></div>
-          <div class="stat"><strong>03</strong><span>Consistency across screens</span></div>
-          <div class="stat"><strong>04</strong><span>Visibility for every team</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: Our Story & Mission -->
+    <!-- Section 2: Our Story & Mission (Moved to 2nd Section Position) -->
     <section class="section">
       <div class="container split">
         <img src="https://images.pexels.com/photos/29708258/pexels-photo-29708258.jpeg?auto=compress&cs=tinysrgb&w=1800"
@@ -175,6 +114,71 @@
               <span style="font-size:12px; color:var(--muted);">Network SLA</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Why the Model Works (Images Replaced Icons) -->
+    <section class="section white">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Why the model works</div>
+          <h2>One platform, three teams, one shared workflow.</h2>
+          <p>Align marketing strategy, store operations, and IT security inside a single real-time platform.</p>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="assets/images/about_marketing.jpg" alt="Marketing Team Display Campaign Workflow">
+            </div>
+            <h3>Marketing Team</h3>
+            <p>Own campaign content and promotional messaging with reusable master templates, dynamic weather triggers,
+              and automated scheduled publishing.</p>
+            <ul class="checklist" style="margin-top:10px; font-size:12.5px;">
+              <li>Reusable layout templates</li>
+              <li>Daypart promotion rules</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="assets/images/about_operations.jpg" alt="Store Operations Multi-Site Management">
+            </div>
+            <h3>Operations Team</h3>
+            <p>Organize store locations and regional screen groups so local store managers can edit approved zones while
+              central brand guardrails stay locked.</p>
+            <ul class="checklist" style="margin-top:10px; font-size:12.5px;">
+              <li>Regional store grouping</li>
+              <li>Local price & note edits</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-img-wrap">
+              <img src="assets/images/about_it_security.jpg" alt="IT and Engineering Network Telemetry & Infrastructure">
+            </div>
+            <h3>IT & Engineering</h3>
+            <p>Monitor uptime 24/7, remotely reboot offline player nodes, enforce SSO authentication, and maintain a
+              complete proof-of-play audit log.</p>
+            <ul class="checklist" style="margin-top:10px; font-size:12.5px;">
+              <li>99.98% Uptime SLA</li>
+              <li>Remote diagnostic reboot</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Product Principles -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Product principles</div>
+          <h2>Built around clarity, control and consistency.</h2>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>01</strong><span>Clarity in every workflow</span></div>
+          <div class="stat"><strong>02</strong><span>Control at every location</span></div>
+          <div class="stat"><strong>03</strong><span>Consistency across screens</span></div>
+          <div class="stat"><strong>04</strong><span>Visibility for every team</span></div>
         </div>
       </div>
     </section>
