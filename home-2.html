@@ -9,6 +9,45 @@
   <link rel="icon" href="assets/images/favicon.png">
   <title>Home 2 | DisplayFlow</title>
   <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* Hero Section CTA Button Hover Visibility Enhancements for Light Mode & Dark Mode */
+    .hero-v2-actions .btn {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hero-v2-actions .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-v2-actions .btn-primary:hover {
+      background: var(--blue-hover);
+      border-color: var(--blue-hover);
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(21, 94, 239, 0.35);
+    }
+
+    .hero-v2-actions .btn-light:hover {
+      background: #ffffff;
+      border-color: var(--blue);
+      color: var(--blue);
+      box-shadow: 0 6px 18px rgba(21, 94, 239, 0.18);
+    }
+
+    .hero-v2-actions .btn-light:hover svg {
+      stroke: var(--blue);
+    }
+
+    body.dark-mode .hero-v2-actions .btn-light:hover {
+      background: rgba(21, 94, 239, 0.28);
+      border-color: var(--blue);
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(21, 94, 239, 0.35);
+    }
+
+    body.dark-mode .hero-v2-actions .btn-light:hover svg {
+      stroke: #ffffff;
+    }
+  </style>
 </head>
 
 <body>
@@ -68,20 +107,28 @@
             Turn Every Display Into a Connected Revenue Channel
           </h1>
           <p class="hero-v2-lead hero-v2-subtext">
-            DisplayFlow empowers marketing, operations, and IT leaders with unified cloud orchestration—distributing 4K media, synchronizing multi-screen campaigns, and auditing hardware health in real time.
+            DisplayFlow empowers marketing, operations, and IT leaders with unified cloud orchestration—distributing 4K
+            media, synchronizing multi-screen campaigns, and auditing hardware health in real time.
           </p>
 
           <!-- CTA Buttons -->
           <div class="actions hero-v2-actions">
-            <a class="btn btn-primary" href="dashboard.html">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-              Open Live Dashboard →
+            <a class="btn btn-primary" href="contact.html">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+              Book a Demo
             </a>
-            <a class="btn btn-light" href="contact.html">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              Book an Enterprise Demo
+            <a class="btn btn-light" href="pricing.html">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="5" width="20" height="14" rx="2" />
+                <line x1="2" y1="10" x2="22" y2="10" />
+              </svg>
+              View Pricing Plans
             </a>
-            <a class="btn btn-light" href="pricing.html">View Pricing Plans</a>
           </div>
         </div>
       </div>
@@ -119,7 +166,11 @@
               <span class="console-dot green"></span>
             </div>
             <div class="console-title">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
               <span>DisplayFlow Cloud Console &bull; fleet.displayflow.net</span>
             </div>
             <div class="console-status">
@@ -129,13 +180,19 @@
           </div>
 
           <div class="console-viewport">
-            <img class="console-screen-img" src="assets/images/corporate_wall.jpg" alt="DisplayFlow Enterprise Video Wall in Flagship Lobby">
+            <img class="console-screen-img" src="assets/images/corporate_wall.jpg"
+              alt="DisplayFlow Enterprise Video Wall in Flagship Lobby">
 
             <!-- Floating Overlay Card 1 (Top Left) -->
             <div class="console-hud-badge top-left">
               <div class="hud-header">
                 <span class="hud-title">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                    <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                    <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                    <line x1="12" y1="20" x2="12.01" y2="20" />
+                  </svg>
                   HQ Video Wall #01
                 </span>
                 <span class="hud-status-chip">4K HDR</span>
@@ -152,7 +209,9 @@
             <div class="console-hud-badge bottom-right">
               <div class="hud-header">
                 <span class="hud-title">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                  </svg>
                   Global Campaign Push
                 </span>
                 <span class="hud-status-chip">Live</span>
@@ -171,7 +230,10 @@
             <div class="console-hud-badge bottom-left">
               <div class="hud-header">
                 <span class="hud-title">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
                   Next Schedule
                 </span>
               </div>
